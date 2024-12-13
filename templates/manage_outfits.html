@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Outfits</title>
+    <style>
+        body { background-color: #ffe4e1; font-family: Arial, sans-serif; }
+        .container { padding: 20px; }
+        .form-control { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+        .btn { background-color: #FF4500; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        table { width: 100%; margin: 20px 0; border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+        img { width: 100px; height: auto; }
+    </style>
+</head>
+<body>
+    {{ sidebar | safe }}
+
+    <!-- Profile Dropdown -->
+    <div id="profileDropdown">
+        <img src="{{ profile_picture }}" alt="Profile Picture" onclick="toggleDropdown()">
+        <div id="profileDropdownContent">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Manage Your Outfits</h2>
+        <!-- Form for adding new outfits -->
+        <form method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="add_item">
+            <select name="category" class="form-control">
+                <option value="Pants">Pants</option>
+                <option value="Shirt">Shirt</option>
+                <option value="Shoes">Shoes</option>
+            </select>
+            <input type="text" name="item_name" class="form-control" placeholder="Item Name" required>
+            <input type="file" name="image" class="form-control" accept="image/*" required>
+            <button type="submit" class="btn">Add Item</button>
+        </form>
+
+        <!-- Table for displaying outfits -->
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Item Name</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+            {% for outfit in outfits %}
+            <tr>
+                <td>{{ outfit[2] }}</td>
+                <td>{{ outfit[3] }}</td>
+                <td>
+                    {% if outfit[4] %}
+                    <img src="{{ url_for('static', filename=outfit[4]) }}" alt="Outfit Image">
+                    {% else %}
+                    No Image
+                    {% endif %}
+                </td>
+                <td>
+                    <form method="POST" style="display:inline;">
+                        <input type="hidden" name="remove_item">
+                        <input type="hidden" name="item_id" value="{{ outfit[0] }}">
+                        <button type="submit" class="btn">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

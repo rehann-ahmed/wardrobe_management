@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendar</title>
+    <style>
+        body { background-color: #fafad2; font-family: Arial, sans-serif; }
+        .container { padding: 20px; text-align: center; }
+        .title { font-size: 24px; font-weight: bold; color: #333; }
+    </style>
+</head>
+<body>
+    {{ sidebar | safe }}
+
+    <!-- Profile Dropdown -->
+    <div id="profileDropdown">
+        <img src="{{ profile_picture }}" alt="Profile Picture" onclick="toggleDropdown()">
+        <div id="profileDropdownContent">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="title">Wardrobe Calendar</div>
+        <p>Integration coming soon!</p>
+    </div>
+</body>
+</html>
