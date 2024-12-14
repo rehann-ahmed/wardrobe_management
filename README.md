@@ -147,7 +147,7 @@ UPLOAD_FOLDER=static/uploads
 5. Open a pull request.
 
 ## Contributors
-- **Rehan** - [GitHub Profile](https://github.com/rehann-ahmed)
+- **Rehan Ahmed** - [GitHub Profile](https://github.com/rehann-ahmed)
 - **Email**: rehanahmed653@gmail.com
 
 Feel free to contribute to this project by submitting issues or pull requests.
