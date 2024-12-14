@@ -124,8 +124,31 @@ SECRET_KEY=your_secret_key
 UPLOAD_FOLDER=static/uploads
 ```
 
+## Screenshots
+
+### 1. Login
+![Login Screenshot](screenshots/login.png)
+
+### 2. Dashboard
+![Dashboard Screenshot](screenshots/dashboard.png)
+
+### 3. Manage Outfits
+![Manage Outfits Screenshot](screenshots/manage_outfits.png)
+
+### 4. Outfit Suggestions
+![Outfit Suggestions Screenshot](screenshots/outfit_suggestions.png)
+
+## Contributing
+
+1. Fork the repository.
+2. Create a new branch for your feature: `git checkout -b feature-name`.
+3. Commit your changes: `git commit -m 'Add some feature'`.
+4. Push to the branch: `git push origin feature-name`.
+5. Open a pull request.
+
 ## Contributors
-- **Your Name** - [GitHub Profile](https://github.com/your-username)
+- **Rehan** - [GitHub Profile](https://github.com/rehann-ahmed)
+- **Email**: rehanahmed653@gmail.com
 
 Feel free to contribute to this project by submitting issues or pull requests.
 
