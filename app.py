@@ -19,6 +19,12 @@ app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
 app.config['MYSQL_DB'] = os.getenv('MYSQL_DATABASE')
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
+print("Connecting to database with the following:")
+print("Host:", os.getenv("MYSQL_HOST"))
+print("User:", os.getenv("MYSQL_USER"))
+print("Database:", os.getenv("MYSQL_DATABASE"))
+print("Port:", os.getenv("MYSQL_PORT"))
+
 mysql = MySQL(app)
 
 # Ensure the upload folder exists
