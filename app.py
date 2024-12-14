@@ -11,19 +11,20 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'your_secret_key')
 
+# MySQL Configuration
+app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST', '127.0.0.1')  # Default to localhost
+app.config['MYSQL_PORT'] = int(os.getenv('MYSQL_PORT', 3306))    # Default to port 3306
+app.config['MYSQL_USER'] = os.getenv('MYSQL_USER', 'root')       # Default to root
+app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD', '')
+app.config['MYSQL_DB'] = os.getenv('MYSQL_DATABASE', 'test')     # Default to test
+
+app.config['UPLOAD_FOLDER'] = 'static/uploads'
+
 print("Connecting to database with the following:")
 print("Host:", os.getenv("MYSQL_HOST"))
 print("User:", os.getenv("MYSQL_USER"))
 print("Database:", os.getenv("MYSQL_DATABASE"))
 print("Port:", os.getenv("MYSQL_PORT"))
-
-# MySQL Configuration
-app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
-app.config['MYSQL_PORT'] = int(os.getenv('MYSQL_PORT', 3306))
-app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
-app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
-app.config['MYSQL_DB'] = os.getenv('MYSQL_DATABASE')
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
 mysql = MySQL(app)
 
