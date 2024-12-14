@@ -99,16 +99,27 @@ Ensure that the UPLOAD_FOLDER is correctly configured for your deployed environm
 File Structure
 
 wardrobe-management/
-├── app.py                 # Main Flask application.
+
+├── app.py                 # Main Flask application
+
 ├── templates/             # HTML templates
+
 ├── static/
+
 │   ├── css/               # CSS files
+
 │   ├── js/                # JavaScript files
+
 │   ├── uploads/           # User-uploaded profile pictures and outfit images
+
 │   └── images/            # Default images (e.g., default profile picture)
+
 ├── schema.sql             # SQL script to initialize the database schema
+
 ├── requirements.txt       # Python dependencies
+
 ├── .env                   # Environment variables
+
 └── README.md              # Project documentation
 
 Screenshots
