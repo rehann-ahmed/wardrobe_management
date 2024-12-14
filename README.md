@@ -99,7 +99,7 @@ Ensure that the UPLOAD_FOLDER is correctly configured for your deployed environm
 File Structure
 
 wardrobe-management/
-├── app.py                 # Main Flask application
+├── app.py                 # Main Flask application.
 ├── templates/             # HTML templates
 ├── static/
 │   ├── css/               # CSS files
