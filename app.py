@@ -1,18 +1,22 @@
 from flask import Flask, render_template, request, redirect, session, url_for
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
-import random
 import os
+from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
 
+# Load environment variables
+load_dotenv()
+
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+app.secret_key = os.getenv('SECRET_KEY', 'your_secret_key')
 
 # MySQL Configuration
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'rehan'
-app.config['MYSQL_DB'] = 'wardrobe_management'
+app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
+app.config['MYSQL_PORT'] = int(os.getenv('MYSQL_PORT', 3306))
+app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
+app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
+app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
 mysql = MySQL(app)
