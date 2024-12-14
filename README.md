@@ -1,153 +1,131 @@
-Wardrobe Management System
+# Wardrobe Management System
 
-Wardrobe Management System is a web application designed to help users organize and manage their wardrobe efficiently. It allows users to register, log in, and manage outfits, get outfit suggestions, and plan their wardrobe using a calendar interface.
+This is a web application for managing wardrobes, suggesting outfits, and organizing outfits on a calendar. It is built with Flask, uses MySQL for the database, and includes a sidebar with navigation and a dropdown for profile settings.
 
-Features
+## Features
 
-User Registration and Login: Users can register with their username, password, and an optional profile picture.
+- User registration and login with profile picture upload.
+- Sidebar for navigation between pages:
+  - **Dashboard**
+  - **Manage Outfits**
+  - **Outfit Suggestions**
+  - **Calendar**
+- Outfit management, including adding and removing items.
+- Random outfit suggestion feature.
+- Calendar to organize outfits by date.
 
-Profile Picture Support: If no profile picture is uploaded during registration, a default profile image is used.
+## Technologies Used
 
-Dashboard: Provides an overview of the application features.
+- **Backend**: Flask
+- **Database**: MySQL
+- **Frontend**: HTML, CSS, JavaScript
 
-Manage Outfits: Add, view, and delete outfits with images and categories.
+---
 
-Outfit Suggestions: Randomized suggestions for outfits based on available wardrobe items.
+## Installation and Setup
 
-Calendar Integration: Plan outfits for specific dates.
+### Clone the Repository
+```bash
+git clone https://github.com/your-username/wardrobe-management-system.git
+cd wardrobe-management-system
+```
 
-Sidebar Navigation: Collapsible sidebar with links to all major features.
-
-Profile Dropdown: A dropdown menu with the user's profile picture, providing a logout option.
-
-Tech Stack
-
-Backend: Flask (Python)
-
-Database: MySQL
-
-Frontend: HTML, CSS, JavaScript
-
-Hosting: Render for Flask app and Railway for MySQL database
-
-Prerequisites
-
-Python 3.11 or higher
-
-MySQL server
-
-Flask and Flask extensions
-
-Installation
-
-Step 1: Clone the Repository
-
-git clone https://github.com/your-username/wardrobe-management.git
-cd wardrobe-management
-
-Step 2: Set Up Virtual Environment
-
+### Create and Activate a Virtual Environment
+For Windows:
+```bash
 python -m venv venv
-source venv/bin/activate   # On Windows, use `venv\Scripts\activate`
+venv\Scripts\activate
+```
+For macOS/Linux:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
-Step 3: Install Dependencies
-
+### Install Requirements
+```bash
 pip install -r requirements.txt
+```
 
-Step 4: Set Up the Database
+### MySQL Configuration
+1. Make sure MySQL is installed and running on your local machine.
+2. Create a database named `wardrobe_management`:
+   ```sql
+   CREATE DATABASE wardrobe_management;
+   ```
+3. Update the `.env` file with your MySQL configuration:
+   ```env
+   MYSQL_HOST=localhost
+   MYSQL_USER=root
+   MYSQL_PASSWORD=yourpassword
+   MYSQL_DATABASE=wardrobe_management
+   ```
+4. Import the `schema.sql` file into the database:
+   ```bash
+   mysql -u root -p wardrobe_management < schema.sql
+   ```
 
-Create a MySQL database named wardrobe_management.
+### Run the Application Locally
+1. Start the Flask development server:
+   ```bash
+   python app.py
+   ```
+2. Open your browser and go to `http://127.0.0.1:5000/`.
 
-Update the .env file with your database credentials:
+---
 
+## Deployment
+
+### Using Render.com
+1. Create an account on [Render](https://render.com/).
+2. Set up a new **Web Service**:
+   - Connect your GitHub repository.
+   - Specify the start command: `python app.py`.
+3. Set up a new **MySQL Database**:
+   - Copy the connection details into the `.env` file.
+4. Push changes to GitHub to trigger deployment.
+
+---
+
+## File Structure
+```plaintext
+wardrobe-management-system/
+├── static/
+│   ├── css/
+│   ├── images/
+│   ├── js/
+│   └── uploads/
+├── templates/
+│   ├── base.html
+│   ├── dashboard.html
+│   ├── login.html
+│   ├── register.html
+│   ├── manage_outfits.html
+│   ├── outfit_suggestion.html
+│   └── calendar.html
+├── app.py
+├── requirements.txt
+├── schema.sql
+├── .env
+├── .gitignore
+└── README.md
+```
+
+---
+
+## Environment Variables
+Ensure the `.env` file contains the following:
+```env
+MYSQL_HOST=your_mysql_host
+MYSQL_USER=your_mysql_user
+MYSQL_PASSWORD=your_mysql_password
 MYSQL_DATABASE=wardrobe_management
-MYSQL_USER=root
-MYSQL_PASSWORD=your_password
-MYSQL_HOST=localhost
-MYSQL_PORT=3306
 SECRET_KEY=your_secret_key
 UPLOAD_FOLDER=static/uploads
+```
 
-Initialize the database schema:
+## Contributors
+- **Your Name** - [GitHub Profile](https://github.com/your-username)
 
-mysql -u root -p wardrobe_management < schema.sql
+Feel free to contribute to this project by submitting issues or pull requests.
 
-Step 5: Run the Application
-
-flask run
-
-The application will be accessible at http://127.0.0.1:5000.
-
-Deployment
-
-Backend Deployment
-
-Use Render for hosting your Flask application.
-
-Update the .env file with the database credentials provided by Render.
-
-Database Deployment
-
-Use Railway to host the MySQL database.
-
-Copy the provided database credentials to your .env file.
-
-Notes:
-
-Ensure that the UPLOAD_FOLDER is correctly configured for your deployed environment.
-
-File Structure
-
-wardrobe-management/
-
-├── app.py                 # Main Flask application
-
-├── templates/             # HTML templates
-
-├── static/
-
-│   ├── css/               # CSS files
-
-│   ├── js/                # JavaScript files
-
-│   ├── uploads/           # User-uploaded profile pictures and outfit images
-
-│   └── images/            # Default images (e.g., default profile picture)
-
-├── schema.sql             # SQL script to initialize the database schema
-
-├── requirements.txt       # Python dependencies
-
-├── .env                   # Environment variables
-
-└── README.md              # Project documentation
-
-Screenshots
-
-1. Dashboard
-
-
-
-2. Manage Outfits
-
-
-
-3. Outfit Suggestions
-
-
-
-4. Calendar Integration
-
-
-
-Contributing
-
-Fork the repository.
-
-Create a new branch for your feature: git checkout -b feature-name.
-
-Commit your changes: git commit -m 'Add some feature'.
-
-Push to the branch: git push origin feature-name.
-
-Open a pull request.
