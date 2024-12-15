@@ -3,10 +3,150 @@
 <head>
     <title>Outfit Suggestions</title>
     <style>
-        body { background-color: #e0ffff; font-family: Arial, sans-serif; }
-        .container { padding: 20px; text-align: center; }
-        .title { font-size: 24px; font-weight: bold; color: #333; }
-        .item { margin: 10px; font-size: 18px; }
+        /* General Styles */
+        body {
+            background-color: #e0ffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Suggested Outfit Card */
+        .outfit-card {
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            width: 350px;
+            margin: 20px auto;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .item {
+            margin: 20px 0;
+        }
+
+        .item img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .item-title {
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Sidebar */
+        #sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(76, 175, 80, 0.9);
+            overflow-x: hidden;
+            transition: 0.5s ease-in-out;
+            padding-top: 20px;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #sidebar a {
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s ease-in-out;
+        }
+
+        #sidebar a:hover {
+            background-color: #45a049;
+        }
+
+        .logout {
+            margin-top: auto;
+            background-color: rgba(255, 0, 0, 0.8);
+            text-align: center;
+        }
+
+        #openSidebarButton {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1002;
+        }
+
+        #openSidebarButton button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 20px;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Profile Dropdown */
+        #profileDropdown {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1003;
+        }
+
+        #profileDropdown img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            object-fit: cover;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #profileDropdownContent {
+            display: none;
+            position: absolute;
+            right: 0;
+            margin-top: 10px;
+            background-color: white;
+            min-width: 150px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1004;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        #profileDropdownContent a {
+            text-decoration: none;
+            color: black;
+            padding: 10px 15px;
+            display: block;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        #profileDropdownContent a:hover {
+            background-color: #f1f1f1;
+        }
     </style>
 </head>
 <body>
@@ -20,26 +160,40 @@
         </div>
     </div>
 
+    <!-- Suggested Outfit Section -->
     <div class="container">
         <h2>Suggested Outfit for Today</h2>
-        {% if suggestion.pants %}
-        <div>
-            <strong>Pants:</strong> {{ suggestion.pants[3] }}
-            <img src="{{ url_for('static', filename=suggestion.pants[4]) }}" alt="Pants Image" style="width: 100px; height: auto;">
+        <div class="outfit-card">
+            <!-- Pants -->
+            {% if suggestion.pants %}
+            <div class="item">
+                <a href="{{ url_for('manage_outfits') }}">
+                    <img src="{{ url_for('static', filename=suggestion.pants[4]) }}" alt="Pants">
+                </a>
+                <div class="item-title">Pants: {{ suggestion.pants[3] }}</div>
+            </div>
+            {% endif %}
+
+            <!-- Shirt -->
+            {% if suggestion.shirt %}
+            <div class="item">
+                <a href="{{ url_for('manage_outfits') }}">
+                    <img src="{{ url_for('static', filename=suggestion.shirt[4]) }}" alt="Shirt">
+                </a>
+                <div class="item-title">Shirt: {{ suggestion.shirt[3] }}</div>
+            </div>
+            {% endif %}
+
+            <!-- Shoes -->
+            {% if suggestion.shoes %}
+            <div class="item">
+                <a href="{{ url_for('manage_outfits') }}">
+                    <img src="{{ url_for('static', filename=suggestion.shoes[4]) }}" alt="Shoes">
+                </a>
+                <div class="item-title">Shoes: {{ suggestion.shoes[3] }}</div>
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
-        {% if suggestion.shirt %}
-        <div>
-            <strong>Shirt:</strong> {{ suggestion.shirt[3] }}
-            <img src="{{ url_for('static', filename=suggestion.shirt[4]) }}" alt="Shirt Image" style="width: 100px; height: auto;">
-        </div>
-        {% endif %}
-        {% if suggestion.shoes %}
-        <div>
-            <strong>Shoes:</strong> {{ suggestion.shoes[3] }}
-            <img src="{{ url_for('static', filename=suggestion.shoes[4]) }}" alt="Shoes Image" style="width: 100px; height: auto;">
-        </div>
-        {% endif %}
     </div>
     
 </body>
