@@ -109,41 +109,10 @@
             margin-top: 10px;
         }
     </style>
-    <script>
-        function toggleDropdown() {
-            const dropdown = document.getElementById("profileDropdownContent");
-            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-        }
-
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function(event) {
-            if (!event.target.matches('#profileDropdown img')) {
-                const dropdown = document.getElementById("profileDropdownContent");
-                if (dropdown.style.display === "block") {
-                    dropdown.style.display = "none";
-                }
-            }
-        }
-    </script>
 </head>
 <body>
     {{ sidebar|safe }}
-
-    <div id="sidebar" class="sidebar">
-        <div class="logo-container">
-            <img src="/static/logo.png" alt="Website Logo" class="logo">
-        </div>
-        <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">×</a>
-        <a href="/dashboard">Dashboard</a>
-        <a href="/manage-outfits">Manage Outfits</a>
-        <a href="/suggest-outfit">Outfit Suggestions</a>
-        <a href="/calendar">Calendar</a>
-        <a href="/logout" class="logout">Logout</a>
-    </div>
-    <div id="openSidebarButton">
-        <button onclick="openSidebar()">☰ Open Sidebar</button>
-    </div>    
-
+   
     <!-- Profile Dropdown -->
     <div id="profileDropdown">
         <img src="{{ profile_picture }}" alt="Profile Picture" onclick="toggleDropdown()">
@@ -165,7 +134,7 @@
         <a href="/suggest-outfit" class="dashboard-card">
             <img src="/static/images/outfit_suggestions.png" alt="Outfit Suggestions">
             <h3>Outfit Suggestions</h3>
-            <p>AI-generated outfit ideas for any occasion.</p>
+            <p>Randomly generated outfit ideas for any occasion.</p>
         </a>
 
         <!-- Card for Calendar -->
