@@ -377,7 +377,42 @@ def calendar():
 
     profile_picture = session.get('profile_picture', 'static/images/default_profile_picture.png')
 
-    return render_template('calendar.html', sidebar=sidebar, container_class="container", profile_picture=profile_picture)
+    user_id = session['user_id']
+    cur = mysql.connection.cursor()
+
+    # Fetch all items from the database
+    cur.execute("SELECT * FROM outfits WHERE user_id = %s", [user_id])
+    outfits = cur.fetchall()
+    cur.close()
+
+    import random
+
+    # Filter items by category
+    pants = [o for o in outfits if o[2] == 'Pants']
+    shirts = [o for o in outfits if o[2] == 'Shirt']
+    shoes = [o for o in outfits if o[2] == 'Shoes']
+
+    # Create a random suggestion for each day of the week
+    days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    weekly_outfits = []
+    for day in days:
+        random_pant = random.choice(pants) if pants else None
+        random_shirt = random.choice(shirts) if shirts else None
+        random_shoes = random.choice(shoes) if shoes else None
+
+        weekly_outfits.append({
+            'day': day,
+            'pant': random_pant,
+            'shirt': random_shirt,
+            'shoes': random_shoes
+        })
+
+    return render_template(
+        'calendar.html',
+        weekly_outfits=weekly_outfits,
+        profile_picture=profile_picture,
+        sidebar=sidebar
+    )
 
 @app.route('/logout')
 def logout():
