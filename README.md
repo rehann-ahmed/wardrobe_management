@@ -138,6 +138,9 @@ UPLOAD_FOLDER=static/uploads
 ### 4. Outfit Suggestions
 ![Outfit Suggestions Screenshot](screenshots/outfit_suggestions.png)
 
+### 5. Calendar
+![Calendar Screenshot](screenshots/calendar.png)
+
 ## Contributing
 
 1. Fork the repository.
