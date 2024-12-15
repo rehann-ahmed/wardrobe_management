@@ -164,15 +164,6 @@
     <div class="container">
         <h2>Suggested Outfit for Today</h2>
         <div class="outfit-card">
-            <!-- Pants -->
-            {% if suggestion.pants %}
-            <div class="item">
-                <a href="{{ url_for('manage_outfits') }}">
-                    <img src="{{ url_for('static', filename=suggestion.pants[4]) }}" alt="Pants">
-                </a>
-                <div class="item-title">Pants: {{ suggestion.pants[3] }}</div>
-            </div>
-            {% endif %}
 
             <!-- Shirt -->
             {% if suggestion.shirt %}
@@ -181,6 +172,16 @@
                     <img src="{{ url_for('static', filename=suggestion.shirt[4]) }}" alt="Shirt">
                 </a>
                 <div class="item-title">Shirt: {{ suggestion.shirt[3] }}</div>
+            </div>
+            {% endif %}
+
+            <!-- Pants -->
+            {% if suggestion.pants %}
+            <div class="item">
+                <a href="{{ url_for('manage_outfits') }}">
+                    <img src="{{ url_for('static', filename=suggestion.pants[4]) }}" alt="Pants">
+                </a>
+                <div class="item-title">Pants: {{ suggestion.pants[3] }}</div>
             </div>
             {% endif %}
 
